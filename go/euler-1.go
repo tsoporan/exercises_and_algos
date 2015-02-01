@@ -1,5 +1,5 @@
-// Title       : Euler Project Problem 
-// Description : Find the sum of all the multiples of 3 or 5 below 1000.
+// Title       : Euler Project Problem 1
+// Description : Find the sum of all the multiples of 3,5,6,9  below 1000.
 
 package main
 
