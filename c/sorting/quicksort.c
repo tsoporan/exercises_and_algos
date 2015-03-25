@@ -81,7 +81,7 @@ void sort(int* arr, int lo, int hi) {
 
 void printArray(int *arr, int size) {
     int i = 0;
-    for (i; i < size; i++) {
+    for (; i < size; i++) {
         printf("%i, ", arr[i]);
     }
     printf("\n");
