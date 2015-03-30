@@ -30,12 +30,35 @@ LinkedList.prototype.push = function(val) {
 }
 
 LinkedList.prototype.print = function() {
+  console.log('>> Printing LinkedList');
   var current = this.head;
   while (current.next) {
     console.log('-- Node', current.val);
     current = current.next;
   }
   console.log('-- Node', current.val);
+}
+
+
+LinkedList.prototype.remove = function(val) {
+  // Removing constitutes of finding the target Node,
+  // removing it and linking the previous node with the target next node (if exists)
+
+  var current = this.head,
+      prev;
+
+  while(current.val !== val) {
+    prev = current;
+    current = current.next;
+  }
+
+  // Stopped at target.
+  if (current.next) {
+    prev.next = current.next;
+  } else {
+    prev.next = null;
+  }
+
 }
 
 var list = new LinkedList();
@@ -46,4 +69,10 @@ list.push(3);
 list.push(2);
 list.push(1);
 
+list.print();
+
+list.remove(3);
+list.print();
+
+list.remove(1);
 list.print();
