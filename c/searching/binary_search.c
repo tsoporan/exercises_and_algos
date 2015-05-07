@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+// Binary search iterative
 int binarySearch(int *values, int target, int size) {
     int min = 0;
     int max = size - 1; // length of values - 1
@@ -28,6 +29,29 @@ int binarySearch(int *values, int target, int size) {
 
 }
 
+// Binary search recursive
+int binarySearch1(int target, int first, int last, int *array) {
+
+    // Doesn't exist
+    if (first > last) {
+        return -1;
+    } else {
+        int midPoint = (first + last) / 2;
+        if (target == array[midPoint]) {
+            return midPoint;
+        } else {
+
+            if (target < array[midPoint]) {
+                return binarySearch1(target, first, midPoint-1, array);
+            } else {
+                return binarySearch1(target, midPoint+1, last, array);
+            }
+
+        }
+
+    }
+}
+
 int main() {
 
     int arrSize = 50;
@@ -37,6 +61,19 @@ int main() {
         array[i] = 2 * i;
     }
 
+    int arr[] = {1,2,3,4,5,6,7};
+    int arrSize1 = sizeof(arr) / sizeof(int);
+    int first = 0;
+    int last = arrSize - 1;
+
+    // Recursive
+    printf("Return %i\n", binarySearch1(3, first, last, arr));
+    printf("Return %i\n", binarySearch1(1, first, last, arr));
+    printf("Return %i\n", binarySearch1(9, first, last, arr));
+    printf("Return %i\n", binarySearch1(0, first, last, arr));
+    printf("Return %i\n", binarySearch1(4, first, last, arr));
+
+    // Iterative
     printf("Binary search %d return: %s\n", 5, binarySearch(array, 5, arrSize) > 1 ? "true" : "false");
     printf("Binary search %d return: %s\n", 6, binarySearch(array, 6, arrSize) > 1 ? "true" : "false");
     printf("Binary search %d return: %s\n", 98, binarySearch(array, 98, arrSize) > 1 ? "true" : "false");
