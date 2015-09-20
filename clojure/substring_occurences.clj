@@ -5,12 +5,15 @@
 (require '[clojure.string :as s])
 
 (defn occurences [text spliton]
-  (if (= text spliton)
-      1
-      (count (s/split text (re-pattern spliton)))
+  (cond
+    (s/blank? text) 0
+    (= text spliton) 1
+    :else (count (s/split text (re-pattern spliton)))
   )
 )
 
+(println (= (occurences "" "") 0))
+(println (= (occurences "" "123123") 0))
 (println (= (occurences "abcfoodefoo" "foo") 2))
 (println (= (occurences "abcfoo" "foo") 1))
 (println (= (occurences "foo" "foo") 1))
